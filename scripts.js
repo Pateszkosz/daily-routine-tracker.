@@ -1,4 +1,6 @@
 // Firebase configuration object
+import firebase from 'firebase/app';
+import 'firebase/database';
 const firebaseConfig = {
     apiKey: "AIzaSyBgIXuT834s5WjVG9dELnfzF3YzfzxghRM",
     authDomain: "daily-routine-76c7e.firebaseapp.com",
