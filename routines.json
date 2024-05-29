@@ -1,0 +1,20 @@
+[
+    {
+        "date": "2024-05-29",
+        "tasks": [
+            { "text": "Reggeli", "done": false },
+            { "text": "Edzés", "done": false },
+            { "text": "Munka", "done": false }
+        ],
+        "notes": "Ma jól éreztem magam."
+    },
+    {
+        "date": "2024-05-30",
+        "tasks": [
+            { "text": "Reggeli", "done": true },
+            { "text": "Olvasás", "done": false },
+            { "text": "Vásárlás", "done": false }
+        ],
+        "notes": "Ma egy kicsit fáradt vagyok."
+    }
+]
