@@ -10,12 +10,21 @@ const firebaseConfig = {
     messagingSenderId: "464979044421",
     appId: "1:464979044421:web:59840434e323a55acb9b2c"
   };
-    
-  // Initialize Firebase with the configuration object
-  firebase.initializeApp(firebaseConfig);
-  
-  // Reference to the database
-  const db = firebase.database();
+firebase.initializeApp(firebaseConfig);
+
+// Access the Firebase Realtime Database
+const database = firebase.database();
+
+// Perform database operations, such as reading or writing data
+// Example: Reading data
+database.ref('path/to/data').once('value')
+  .then((snapshot) => {
+    const data = snapshot.val();
+    console.log('Data:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
 ocument.addEventListener('DOMContentLoaded', () => {
     const routineContainer = document.getElementById('routine-container');
 
