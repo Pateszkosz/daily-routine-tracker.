@@ -1,49 +1,61 @@
-ocument.addEventListener('DOMContentLoaded', () => {
-    const routineContainer = document.getElementById('routine-container');
-
-    fetch('routines.json')
-        .then(response => response.json())
-        .then(routines => {
-            routines.forEach(routine => {
-                const routineElement = document.createElement('div');
-                routineElement.className = 'routine';
-
-                const dateElement = document.createElement('h2');
-                dateElement.textContent = `Dátum: ${routine.date}`;
-                routineElement.appendChild(dateElement);
-
-                const tasksElement = document.createElement('ul');
-                routine.tasks.forEach((task, taskIndex) => {
-                    const taskElement = document.createElement('li');
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.checked = getTaskStatus(routine.date, taskIndex);
-                    checkbox.addEventListener('change', () => {
-                        setTaskStatus(routine.date, taskIndex, checkbox.checked);
-                    });
-                    taskElement.appendChild(checkbox);
-                    taskElement.appendChild(document.createTextNode(task.text));
-                    tasksElement.appendChild(taskElement);
-                });
-                routineElement.appendChild(tasksElement);
-
-                const notesElement = document.createElement('p');
-                notesElement.textContent = `Jegyzetek: ${routine.notes}`;
-                routineElement.appendChild(notesElement);
-
-                routineContainer.appendChild(routineElement);
-            });
-        })
-        .catch(error => console.error('Error loading routines:', error));
-});
-
-function getTaskStatus(date, taskIndex) {
-    const storedRoutine = JSON.parse(localStorage.getItem(date)) || {};
-    return storedRoutine[taskIndex] || false;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-function setTaskStatus(date, taskIndex, status) {
-    const storedRoutine = JSON.parse(localStorage.getItem(date)) || {};
-    storedRoutine[taskIndex] = status;
-    localStorage.setItem(date, JSON.stringify(storedRoutine));
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.routine {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.routine h2 {
+    color: #666;
+}
+
+.routine ul {
+    list-style: none;
+    padding: 0;
+}
+
+.routine ul li {
+    padding: 5px 0;
+}
+
+.routine ul li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .routine h2 {
+        font-size: 18px;
+    }
+
+    .routine ul li {
+        font-size: 16px;
+    }
 }
